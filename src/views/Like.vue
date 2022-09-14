@@ -26,20 +26,24 @@ export default {
 </script>
 
 <style >
+
 .like-boxs {
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
-    flex-flow: wrap;
 }
 
 .like-box {
-    width: 30%;
+    width: 90%;
     height: auto;
     margin: 20px;
     box-sizing: border-box;
+    border: 1px solid black;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
 }
 
 .back-like {
