@@ -24,6 +24,7 @@
         padding: 20px;
         font-size: 20px;
         height: 5vh;
+        text-align: center
       "
       >View Like</router-link
     >
