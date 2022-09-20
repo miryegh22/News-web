@@ -12,10 +12,12 @@
     </div>
   </div>
   <div v-else>
+    <div style="display:flex;justify-content: space-between;">
     <router-link
       :to="{ name: 'like', params: { items: JSON.stringify(likedItems) } }"
       style="
         text-decoration: none;
+        width: 20%;
         color: white;
         border: 1px solid black;
         background-color: black;
@@ -25,12 +27,17 @@
       "
       >View Like</router-link
     >
+    <input type="text" placeholder="Search..." v-model="search" class="search">
+    </div>
     <div class="boxs">
-      <div v-for="(r, index) in root" class="box" :key="r.title">
+     
+      <div v-for="(r, index) in filter" class="box" :key="r.title">
+        <div style="min-height: 80%;">
         <h4>{{ r.publishedAt.substring(0, 10) }}</h4>
         <h2>{{ r.title }}</h2>
         <img v-bind:src="r.urlToImage" alt="" class="image" />
         <p>{{ r.description }}</p>
+      </div>
         <div class="read-like"><router-link :to="{ name: 'about', params: { id: index } }" class="link"
           >Read more</router-link
         >
@@ -47,13 +54,18 @@
 </template>
 <script>
 export default {
-  name: "HomeView",
+  name: "App",
   data() {
     return {
+      search:'',
       root: "",
       isLoading: true,
       likedItems: [],
     };
+  },
+  computed:{
+    filter(){
+    return this.root.filter(ro=>ro.title.toLowerCase().includes(this.search.toLowerCase()))}
   },
   methods: {
     like(desc) {
@@ -112,7 +124,8 @@ export default {
   border-radius: 1%;
   display: flex;
   flex-direction: column;
-  gap:1vh
+  gap:1vh;
+  justify-content: space-between;
 }
 
 .box:hover {
@@ -263,5 +276,14 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.search{
+  width:80%;
+  text-align: center;
+  font-size: large;
+  border:1px solid black
+}
+.search:hover{
+  border:3px solid red
 }
 </style>
